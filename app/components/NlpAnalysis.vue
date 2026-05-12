@@ -144,7 +144,7 @@ const runFinal = async () => {
   <section id="nlp" class="tab-content">
     <div class="card">
       <h2>Natural Language Processing</h2>
-      <p class="subtitle">Enter a sentence to run through the NLP analysis pipeline.</p>
+      <p class="subtitle">Silahkan tulis ulasan untuk dianalisis. Model hanya ditraining dalam bahasa Inggris, jadi diharapkan untuk menggunakan bahasa Inggris.</p>
 
       <!-- Input Area -->
       <div class="input-area">
