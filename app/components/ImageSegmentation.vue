@@ -168,7 +168,7 @@ const isAnyRunning = computed(() => {
   <section id="image-seg" class="tab-content">
     <div class="card">
       <h2>Image Processing</h2>
-      <p class="subtitle">Upload an image to run through the segmentation pipeline.</p>
+      <p class="subtitle">Silahkan masukan gambar anda untuk di proses. (Model ini khusus untuk mendeteksi foto Kucing dan Anjing)</p>
 
       <!-- Upload Area -->
       <div
@@ -230,18 +230,44 @@ const isAnyRunning = computed(() => {
                 </div>
               </div>
               <div class="visual-item">
-                <p class="visual-label">Normalized Array Snippet</p>
-                <div class="array-visualizer">
-                  <div class="array-grid">
-                    <div 
-                      v-for="(val, i) in steps.preprocessing.data.preprocessed_array[112][112].slice(0, 3)" 
-                      :key="i"
-                      class="array-cell"
-                    >
-                      {{ val.toFixed(4) }}
+                <p class="visual-label">Array Transformation</p>
+                <div class="array-transformation">
+                  <!-- Original -->
+                  <div class="array-visualizer">
+                    <span class="visual-sub-label">Original (0-255)</span>
+                    <div class="array-grid">
+                      <div 
+                        v-for="(val, i) in steps.preprocessing.data.original_array.flat(Infinity).slice(0, 5)" 
+                        :key="'orig-'+i"
+                        class="array-cell original"
+                      >
+                        {{ val }}
+                      </div>
+                      <div class="array-cell-more">...</div>
                     </div>
                   </div>
-                  <p class="array-info">Center pixel (R,G,B values)</p>
+
+                  <div class="transformation-arrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                    </svg>
+                  </div>
+
+                  <!-- Normalized -->
+                  <div class="array-visualizer">
+                    <span class="visual-sub-label">Normalized (0.0-1.0)</span>
+                    <div class="array-grid">
+                      <div 
+                        v-for="(val, i) in steps.preprocessing.data.preprocessed_array.flat(Infinity).slice(0, 5)" 
+                        :key="'norm-'+i"
+                        class="array-cell"
+                      >
+                        {{ val.toFixed(4) }}
+                      </div>
+                      <div class="array-cell-more">...</div>
+                    </div>
+                  </div>
+                  <p class="array-info">Nilai piksel diubah dari rentang 0-255 menjadi 0-1 untuk membantu proses pembelajaran model.</p>
                 </div>
               </div>
             </div>
@@ -578,6 +604,8 @@ const isAnyRunning = computed(() => {
 
 .array-grid {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 0.5rem;
   margin-bottom: 0.5rem;
 }
@@ -590,12 +618,54 @@ const isAnyRunning = computed(() => {
   font-family: 'Courier New', monospace;
   font-size: 0.85rem;
   color: #93c5fd;
+  min-width: 65px;
+  text-align: center;
+}
+
+.array-cell.original {
+  background: rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.3);
+  color: #fbbf24;
+}
+
+.array-cell-more {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  color: var(--text-secondary);
+  font-weight: 700;
 }
 
 .array-info {
   font-size: 0.7rem;
   color: var(--text-secondary);
   font-style: italic;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.array-transformation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.transformation-arrow {
+  color: var(--text-secondary);
+  opacity: 0.5;
+  margin: 0.25rem 0;
+}
+
+.visual-sub-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+  display: block;
+  text-align: center;
 }
 
 /* --- Final Result UI --- */

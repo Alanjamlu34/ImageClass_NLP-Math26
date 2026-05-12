@@ -1,7 +1,7 @@
 <template>
   <header>
     <h1>Kelas Machine Learning Math-26</h1>
-    <p>Pengenalan flow machine learnig</p>
+    <p>Pengenalan flow machine learning</p>
   </header>
 </template>
 
