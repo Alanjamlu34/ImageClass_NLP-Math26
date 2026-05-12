@@ -84,7 +84,7 @@ const runPreprocessing = async () => {
     const formData = new FormData();
     formData.append('image', selectedFile.value);
 
-    const response = await fetch('http://localhost:5000/preprocess/image', {
+    const response = await fetch('https://postphlogistic-nonspaciously-leigh.ngrok-free.dev/preprocess/image', {
       method: 'POST',
       body: formData
     });
@@ -119,7 +119,7 @@ const runPredict = async () => {
   try {
     await appendLog('predict', '📡 Sending preprocessed array to model...');
     
-    const response = await fetch('http://localhost:5000/predict/image', {
+    const response = await fetch('https://postphlogistic-nonspaciously-leigh.ngrok-free.dev/predict/image', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

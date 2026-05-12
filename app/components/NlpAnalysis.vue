@@ -65,7 +65,7 @@ const runPreprocessing = async () => {
   try {
     await appendLog('preprocessing', '📡 Sending text to backend...');
     
-    const response = await fetch('http://localhost:5000/preprocess/nlp', {
+    const response = await fetch('https://postphlogistic-nonspaciously-leigh.ngrok-free.dev/preprocess/nlp', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ text })
@@ -102,7 +102,7 @@ const runPredict = async () => {
   try {
     await appendLog('predict', '📡 Sending padded sequence to model to predict...');
     await appendLog('predict', '⏳ Waiting for model to predict...');
-    const response = await fetch('http://localhost:5000/predict/nlp', {
+    const response = await fetch('https://postphlogistic-nonspaciously-leigh.ngrok-free.dev/predict/nlp', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
