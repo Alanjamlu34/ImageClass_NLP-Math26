@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML AI Capabilities</title>
+    <meta name="description" content="Machine Learning Presentation Showcase for Image Segmentation and NLP">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>ML AI Capabilities</h1>
+            <p>Interactive Showcase: Image Processing & NLP</p>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab-btn active" data-target="image-seg">Image Segmentation</button>
+            <button class="tab-btn" data-target="nlp">NLP Analysis</button>
+        </nav>
+
+        <main>
+            <!-- Image Segmentation Section -->
+            <section id="image-seg" class="tab-content active">
+                <div class="card">
+                    <h2>Image processing</h2>
+                    <p class="subtitle">Upload an image to segment objects.</p>
+                    
+                    <div class="upload-area" id="upload-area">
+                        <input type="file" id="image-input" accept="image/*" hidden>
+                        <div class="upload-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                            </svg>
+                        </div>
+                        <button id="upload-btn" class="secondary-btn">Select Image</button>
+                        <p id="file-name" class="file-name">No file selected</p>
+                        <div id="image-preview-container" class="hidden">
+                            <img id="image-preview" src="" alt="Preview">
+                        </div>
+                    </div>
+
+                    <button id="process-image-btn" class="primary-btn glow-effect" disabled>Process Image</button>
+                    
+                    <div class="result-area hidden" id="image-result-area">
+                        <h3>Segmentation Result</h3>
+                        <p class="result-desc">Output</p>
+                        <div class="result-box" id="image-result"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- NLP Section -->
+            <section id="nlp" class="tab-content hidden">
+                 <div class="card">
+                    <h2>Natural Language Processing</h2>
+                    <p class="subtitle">Enter a sentence for text analysis.</p>
+                    
+                    <div class="input-area">
+                        <textarea id="text-input" placeholder="Type your sentence here..." rows="5"></textarea>
+                    </div>
+
+                    <button id="process-text-btn" class="primary-btn glow-effect">Process Text</button>
+                    
+                    <div class="result-area hidden" id="text-result-area">
+                        <h3>Analysis Result</h3>
+                        <p class="result-desc">Output</p>
+                        <div class="result-box" id="text-result"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
